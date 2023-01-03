@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>To Do List</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        <label for="new-task">Add Item</label>
+        <div class="new-task-section">
+          <input id="new-task" type="text" />
+          <button id="add-button">Add</button>
+        </div>
+      </p>
+
+      <h3>Todo</h3>
+      <ul id="incomplete-tasks">
+      </ul>
+
+      <h3>Completed</h3>
+      <ul id="completed-tasks">
+      </ul>
+    </div>
+    <script src="index.js" async defer></script>
+  </body>
+</html>
