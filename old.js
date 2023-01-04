@@ -40,11 +40,9 @@ const createNewTask = (newTask, completed) => {
   editInput.setAttribute("type", "text");
   editInput.setAttribute("value", newTask);
   const editTask = document.createElement("button");
-  editTask.setAttribute("onClick", "editTask(this)");
   editTask.classList.add("edit");
   editTask.textContent = "Edit";
   const deleteTask = document.createElement("button");
-  deleteTask.setAttribute("onClick", "deleteTask(this)");
   deleteTask.classList.add("delete");
   deleteTask.textContent = "Delete";
 
@@ -63,39 +61,45 @@ const createNewTask = (newTask, completed) => {
   }
 
   allTasks.push(newElement);
-  CheckTask();
+  refreshTasks();
 };
 
-//edit task
-const editTask = (e) => {
-  const task = e.parentElement;
-  const editInput = task.querySelector("input[type=text]");
-  const label = task.querySelector("label");
-  const containsClass = task.classList.contains("editMode");
+//Refresh tasks
+const refreshTasks = () => {
+  const editButton = document.querySelectorAll(".edit");
+  const deleteButton = document.querySelectorAll(".delete");
+  const checkboxInput = document.querySelectorAll("input[type=checkbox]");
 
-  task.classList.toggle("editMode");
-  if (containsClass) {
-    label.innerText = editInput.value;
-  } else {
-    editInput.value = label.innerText;
-  }
-  refreshStorage();
-};
+  //edit task
+  editButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      const task = button.parentElement;
+      const editInput = task.querySelector("input[type=text]");
+      const label = task.querySelector("label");
+      const containsClass = task.classList.contains("editMode");
 
-//delete task
-const deleteTask = (e) => {
-  const task = e.parentElement;
-  const index = allTasks.indexOf(task);
-  allTasks.splice(index, 1);
-  task.remove();
-  refreshStorage();
-};
+      task.classList.toggle("editMode");
+      if (containsClass) {
+        label.innerText = editInput.value;
+      } else {
+        editInput.value = label.innerText;
+      }
+      refreshStorage();
+    });
+  });
 
-//check task
-const CheckTask = () => {
-  const checkbox = document.querySelectorAll("input[type=checkbox]");
+  //delete task
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      const task = button.parentElement;
+      allTasks.splice(allTasks.indexOf(task), 1);
+      task.remove();
+      refreshStorage();
+    });
+  });
 
-  checkbox.forEach((box) => {
+  //check task
+  checkboxInput.forEach((box) => {
     box.addEventListener("click", () => {
       const task = box.parentElement;
       if (box.checked == true) {
