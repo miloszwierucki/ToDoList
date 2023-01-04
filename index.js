@@ -76,8 +76,10 @@ const editTask = (e) => {
   task.classList.toggle("editMode");
   if (containsClass) {
     label.innerText = editInput.value;
+    e.innerText = "Edit";
   } else {
     editInput.value = label.innerText;
+    e.innerText = "Save";
   }
   refreshStorage();
 };
