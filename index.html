@@ -4,28 +4,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>To Do List</title>
-    <meta name="description" content="" />
+    <meta name="author" content="Milosz Wierucki">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <p>
+    <main class="container">
+      <section class="new-task-section">
         <label for="new-task">Add Item</label>
-        <div class="new-task-section">
+        <div class="add-new-task">
           <input id="new-task" type="text" />
           <button id="add-button">Add</button>
         </div>
-      </p>
+      </section>
 
-      <h3>Todo</h3>
+      <section class="tasks-section">
+      <h3 class="title-section">Todo</h3>
+      <button id="check-all-button">Check All</button>
       <ul id="incomplete-tasks">
       </ul>
+      </section>
 
-      <h3>Completed</h3>
+      <section class="tasks-section">
+      <h3 class="title-section">Completed</h3>
       <ul id="completed-tasks">
       </ul>
-    </div>
+      </section>
+    </main>
+    <footer>
+      <p>Created by <a href="https://wierucki.com">Miłosz Wierucki</a></p>
+    </footer>
     <script src="index.js" async defer></script>
   </body>
 </html>

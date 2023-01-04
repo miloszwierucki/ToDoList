@@ -3,9 +3,11 @@ body {
   color: #333;
   font-family: Lato, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 90vh;
+  font-size: 1.2vw;
 }
 
 .container {
@@ -17,6 +19,7 @@ body {
   border-radius: 1vw;
   display: block;
   width: 40vw;
+  margin: 10vw 0;
 }
 
 ul {
@@ -25,11 +28,71 @@ ul {
   width: 100%;
 }
 
+input, button {
+  outline: none;
+}
+
+/* Heading */
+.title-section, label[for="new-task"] {
+  color: #333;
+  font-weight: 700;
+  font-size: 1em;
+  border-bottom: 2px solid #333;
+  padding: 2.5vw 0 0.5vw;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.tasks-section {
+  position: relative;
+}
+
+#check-all-button {
+  position: absolute;
+  top: 2.5vw;
+  right: 0;
+  width: 25%;
+  font-size: 1em;
+}
+
+/* New Task Section */
+.new-task-section {
+  margin: 0 0 2vw;
+}
+
+.add-new-task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label[for="new-task"] {
+  display: block;
+  margin-bottom: 1vw;
+}
+
+input#new-task {
+  width: 80%;
+}
+
+#add-button {
+  width: 20%;
+}
+
+#add-button:hover {
+  color: #0fc57c;
+}
+
+/* Task list element styles */
 li {
   display: grid;
   grid-template-areas: "checkbox label edit delete";
-  grid-template-columns: 3vw 65% 5vw 5vw;
+  grid-template-columns: 5% 65% 15% 15%;
   align-items: center;
+  overflow: hidden;
+  padding: 1vw 0.75vw;
+  border-bottom: 1px solid #eee;
 }
 
 li input[type="checkbox"] {
@@ -44,16 +107,12 @@ li label {
   padding: 0 0 0 11px;
 }
 
-li .edit {
+.edit {
   grid-area: edit;
 }
 
-li .delete {
+.delete {
   grid-area: delete;
-}
-
-input, button {
-  outline: none;
 }
 
 button {
@@ -61,7 +120,7 @@ button {
   border: 0;
   color: #888;
   font-size: 1em;
-  width: 5vw;
+  width: 100%;
   font-family: Lato, sans-serif;
   cursor: pointer;
 }
@@ -70,19 +129,9 @@ button:hover {
   color: #333;
 }
 
-/* Heading */
-h3, label[for="new-task"] {
-  color: #333;
-  font-weight: 700;
-  font-size: 1em;
-  border-bottom: 2px solid #333;
-  padding: 2.5vw 0 0.5vw;
-  margin: 0;
-  text-transform: uppercase;
-}
-
 input[type="text"] {
   margin: 0;
+  width: 90%;
   font-size: 1.1em;
   line-height: 1.1em;
   height: 18px;
@@ -98,42 +147,25 @@ input[type="text"]:focus {
   color: #333;
 }
 
-/* New Task */
-.new-task-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-label[for="new-task"] {
-  display: block;
-  margin-bottom: 1vw;
-}
-
-input#new-task {
-  width: 80%;
-}
-.new-task-section > button:hover {
-  color: #0fc57c;
-}
-
-/* Task list */
-li {
-  overflow: hidden;
-  padding: 1vw 0.75vw;
-  border-bottom: 1px solid #eee;
-}
-
-li > input[type="text"] {
-  width: 90%;
-}
-
-li > .delete:hover {
+/* Delete Task */
+.delete:hover {
   color: #cf2323;
 }
 
-/* Completed */
+/* Edit Task */
+li input[type="text"] {
+  display: none;
+}
+
+li.editMode input[type="text"] {
+  display: block;
+}
+
+li.editMode label {
+  display: none;
+}
+
+/* Completed Tasks Section*/
 #completed-tasks label {
   text-decoration: line-through;
   color: #888;
@@ -143,15 +175,51 @@ li > .delete:hover {
   display: none;
 }
 
-/* Edit Task */
-ul li input[type="text"] {
-  display: none;
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 1vw;
+  color: #888;
+  font-size: 0.6em;
 }
 
-ul li.editMode input[type="text"] {
-  display: block;
+footer a {
+  color: #888;
 }
 
-ul li.editMode label {
-  display: none;
+@media only screen and (orientation: portrait) {
+  body {
+    font-size: 2.2vw;
+  }
+
+  .container {
+    width: 75vw;
+  }
+
+  /* Heading */
+  .title-section, label[for="new-task"] {
+    padding: 3.5vw 0 1vw;
+  }
+
+  #check-all-button {
+    top: 3.6vw;
+    font-size: 0.9em;
+  }
+
+  /* New Task Section */
+  label[for="new-task"] {
+    margin-bottom: 2vw;
+  }
+
+  /* Task list element styles */
+  input[type="text"] {
+    border-radius: 1.2vw;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    font-size: 0.7em;
+  }
 }
